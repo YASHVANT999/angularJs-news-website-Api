@@ -1,0 +1,106 @@
+<div class="container mt-5">
+    <div class="form-area">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label class="mb-2 mt-2">First Name</label>
+                    <input type="text"
+                     placeholder="Enter Name" 
+                     class="form-control" 
+                     formControlName="fullName"
+                     required>
+                     <div class="alert alert-danger" 
+                        *ngIf="fullName.invalid && fullName.touched">
+                        <div *ngIf="fullName.errors?.['required']">Fullname is Required</div>
+                        <div 
+                        *ngIf="fullName.errors?.['minlength']">Fullname is atleast 5 character</div>
+                    </div>
+                    
+            </div>
+                <div class="form-group">
+                    <label class="mb-2 mt-2">Email</label>
+                    <input type="email" placeholder="Enter Email" 
+                    class="form-control" 
+                    formControlName="email"
+                    name="email" 
+                     required />
+                     <div class="alert alert-danger" 
+                        *ngIf="email.invalid && email.touched">
+                        <div *ngIf="email.errors?.['required']">Email is Required</div>
+                        <div 
+                        *ngIf="email.errors?.['pattern']">Email is Invalid</div>
+                    </div>
+                </div>
+              
+
+
+                <!-- contact Details -->
+                <div formGroupName="contactDetails">
+
+                    <div class="form-group">
+                        <label class="mb-2 mt-2">Address</label>
+                        <textarea rows="6" 
+                        placeholder="Enter Address" 
+                        formControlName="address"
+                        class="form-control" 
+                        name="address" required></textarea>
+                        <div class="alert alert-danger" 
+                            *ngIf="address.invalid && address.touched">
+                            <div *ngIf="address.errors?.['required']">Address is Required</div>
+                           
+                        </div>
+                    
+                    </div>
+
+                    <div class="form-group">
+                        <label class="mb-2 mt-2">Shipping Address</label>
+                        <textarea rows="6" 
+                        placeholder="Enter Shipping Address" 
+                        formControlName="shippingAddress"
+                        class="form-control" 
+                        name="shippingAddress" required></textarea>
+                        <div class="alert alert-danger" 
+                            *ngIf="shippingAddress.invalid && shippingAddress.touched">
+                            <div *ngIf="shippingAddress.errors?.['required']">Shipping address is Required</div>
+                           
+                        </div>
+
+
+                </div>
+
+                <div class="form-group">
+                    <label class="mb-2 mt-2">Contact Number</label>
+                    <input type="number" placeholder="Enter Contact Number" 
+                    class="form-control" 
+                    formControlName="contactNo"
+                    name="contactNo" 
+                     required />
+                     <div class="alert alert-danger" 
+                        *ngIf="contactNo.invalid && contactNo.touched">
+                        <div *ngIf="contactNo.errors?.['required']">Contact Number is Required</div>
+                        <div 
+                        *ngIf="contactNo.errors?.['pattern']">Contact Number is Invalid</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="mb-2 mt-2">Skills</label>
+                <input type="text" placeholder="Enter Skills" 
+                    class="form-control" 
+                     (keyup.enter)="addSkills(skills)"
+                     #skills
+                     required />
+                     <div *ngFor="let skill of Skills.controls,let i =index">
+                        <ul class="list-group">
+                            <li class="list-group-item">{{skill.value}}
+                                <a class="btn btn-danger" (click)="Del(i)">X</a>
+                            </li>
+                        </ul>
+                     </div>
+            </div>
+                <button type="submit" class="btn btn-primary mt-3" [disabled]="form.invalid"> Submit</button>
+            
+        </form>
+    </div>
+    
+  </div>

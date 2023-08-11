@@ -1,0 +1,34 @@
+<h2>User Details</h2>
+
+
+<input type="text" placeholder="Name" [(ngModel)]="Name"><br>
+
+<input type="email" placeholder="Email" [(ngModel)]="Email"><br>
+
+
+<textarea type="text" placeholder="address" [(ngModel)]="Address"></textarea><br>
+
+<button (click)="Add()">Sumbit</button>
+
+<div *ngIf="ObjectList.length >0 then hasData; else noData">
+    
+</div>
+<ng-template #hasData>
+<table>
+    <tr>
+        <td>Name</td>
+        <td>Email</td>
+        <td>Address</td>
+        <td>Action</td>
+    </tr>
+        <tr *ngFor="let obj of ObjectList,let i=index">
+           <td>{{obj.name}}</td> 
+            <td>{{obj.email}}</td>
+            <td>{{obj.address}}</td>
+            <td><button (click)="Del(i)">Delete</button></td>
+            </tr>
+    </table>
+</ng-template>
+<ng-template #noData>
+    <p>No data Found</p>
+</ng-template>

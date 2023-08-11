@@ -1,0 +1,8 @@
+<div *ngFor="let post of newData,let index=index">
+    <ul type="square">
+        <li>{{post.title}}
+            <button [routerLink]="['/desc',index]"> Description</button>
+        </li>
+    </ul>
+    <hr>
+</div>

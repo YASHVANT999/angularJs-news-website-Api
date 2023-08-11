@@ -1,0 +1,38 @@
+<p>Fetch Array</p>
+<ul>
+    <li *ngFor="let arr of ArrayList">{{arr}}</li>
+</ul>
+
+<p>Fetch Object</p>
+<button (click)="Add()">Add data</button>
+<div *ngIf="ObjectList.length >0 then hasData; else noData">
+    
+</div>
+
+<ng-template #hasData>
+    <ul>
+        <li *ngFor="let obj of ObjectList,let i=index">{{obj.Obj}}
+            <button (click)="Del(i)">Delete</button>
+        </li>
+    </ul>
+</ng-template>
+<ng-template #noData>
+    <p>No data Found</p>
+</ng-template>
+
+<h3>Switch case</h3>
+<div>
+    <button 
+    (click)="Fun('step 1')">Step 1</button>
+    <button 
+    (click)="Fun('step 2')">Step 2</button>
+    <button 
+    (click)="Fun('step 3')">Step 3</button>
+</div>
+
+<div [ngSwitch]="stepFrom">
+    <div *ngSwitchCase="'step 1'"> Step 1</div>
+    <div *ngSwitchCase="'step 2'"> Step 2</div>
+    <div *ngSwitchCase="'step 3'"> Step 3</div>
+    
+</div>
